@@ -1,16 +1,12 @@
-// index.js
-const express = require("express");
-const app = express();
+// api/index.js
 
-const urls = [
-  "https://example.com/page1",
-  "https://example.com/page2",
-  "https://example.com/page3",
-];
-
-app.get("/", (req, res) => {
+export default function handler(req, res) {
+  const urls = [
+    "https://example.com/page1",
+    "https://example.com/page2",
+    "https://example.com/page3"
+  ];
   const randomUrl = urls[Math.floor(Math.random() * urls.length)];
-  res.redirect(randomUrl);
-});
-
-module.exports = app;
+  res.writeHead(302, { Location: randomUrl });
+  res.end();
+}
